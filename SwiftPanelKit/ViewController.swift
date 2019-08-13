@@ -10,6 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var panel: SwiftPanel?
+
+
+    @IBAction func showPanelAction(_ sender: Any) {
+
+        if panel === nil {
+            panel = SwiftPanel(withParentView: view)
+        }
+
+        panel?.show()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24B091B823032688002CE89A /* SwiftPanelContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B423032688002CE89A /* SwiftPanelContent.swift */; };
+		24B091B923032688002CE89A /* SwiftPanelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B523032688002CE89A /* SwiftPanelExtension.swift */; };
+		24B091BA23032688002CE89A /* SwiftPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B623032688002CE89A /* SwiftPanel.swift */; };
+		24B091BB23032688002CE89A /* SwiftPanelBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B723032688002CE89A /* SwiftPanelBackground.swift */; };
 		24C50EFA2303233400C46FE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C50EF92303233400C46FE7 /* AppDelegate.swift */; };
 		24C50EFC2303233400C46FE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C50EFB2303233400C46FE7 /* ViewController.swift */; };
 		24C50EFF2303233400C46FE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24C50EFD2303233400C46FE7 /* Main.storyboard */; };
@@ -15,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24B091B423032688002CE89A /* SwiftPanelContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanelContent.swift; sourceTree = "<group>"; };
+		24B091B523032688002CE89A /* SwiftPanelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanelExtension.swift; sourceTree = "<group>"; };
+		24B091B623032688002CE89A /* SwiftPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanel.swift; sourceTree = "<group>"; };
+		24B091B723032688002CE89A /* SwiftPanelBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanelBackground.swift; sourceTree = "<group>"; };
 		24C50EF62303233400C46FE7 /* SwiftPanelKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPanelKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C50EF92303233400C46FE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C50EFB2303233400C46FE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +43,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24B091B323032602002CE89A /* SwiftPanelKit */ = {
+			isa = PBXGroup;
+			children = (
+				24B091B623032688002CE89A /* SwiftPanel.swift */,
+				24B091B723032688002CE89A /* SwiftPanelBackground.swift */,
+				24B091B423032688002CE89A /* SwiftPanelContent.swift */,
+				24B091B523032688002CE89A /* SwiftPanelExtension.swift */,
+			);
+			path = SwiftPanelKit;
+			sourceTree = "<group>";
+		};
 		24C50EED2303233400C46FE7 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +73,7 @@
 		24C50EF82303233400C46FE7 /* SwiftPanelKit */ = {
 			isa = PBXGroup;
 			children = (
+				24B091B323032602002CE89A /* SwiftPanelKit */,
 				24C50EF92303233400C46FE7 /* AppDelegate.swift */,
 				24C50EFB2303233400C46FE7 /* ViewController.swift */,
 				24C50EFD2303233400C46FE7 /* Main.storyboard */,
@@ -135,7 +155,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B091BB23032688002CE89A /* SwiftPanelBackground.swift in Sources */,
+				24B091B823032688002CE89A /* SwiftPanelContent.swift in Sources */,
 				24C50EFC2303233400C46FE7 /* ViewController.swift in Sources */,
+				24B091BA23032688002CE89A /* SwiftPanel.swift in Sources */,
+				24B091B923032688002CE89A /* SwiftPanelExtension.swift in Sources */,
 				24C50EFA2303233400C46FE7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
