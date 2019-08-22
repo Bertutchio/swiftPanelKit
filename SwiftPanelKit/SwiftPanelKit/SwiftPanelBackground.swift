@@ -13,30 +13,38 @@ class SwiftPanelBackground: UIView {
 
     var animationDuration: TimeInterval = 0.35
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .black
+        alpha = 0
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 
-    func hide() {
+    func hide(closureSuccess: @escaping () -> Void) {
 
-        UIView.animate(withDuration: animationDuration, animations: {
-            self.backgroundColor = .white
-            self.alpha = 0
-        }) { (success) in
-            self.sendSubviewToBack(self)
-            self.minimize()
-        }
+        UIView.animate(
+            withDuration: animationDuration,
+            animations: { self.alpha = 0 },
+            completion: { (sucess) in
+                closureSuccess()
+            }
+        )
 
     }
 
-    func show() {
+    func show(closureSuccess: @escaping () -> Void) {
 
-        self.maximize(rect: (superview?.frame)!)
-
-        UIView.animate(withDuration: animationDuration, animations: {
-            self.backgroundColor = .black
-            self.alpha = 0.75
-        }) { (success) in
-            self.bringSubviewToFront(self)
-        }
+        UIView.animate(
+            withDuration: animationDuration,
+            animations: { self.alpha = 0.75 },
+            completion: { (sucess) in
+                closureSuccess()
+            }
+        )
 
     }
 

@@ -18,22 +18,26 @@ class SwiftPanel {
     init(withParentView: UIView) {
         
         parentView = withParentView
-        background = SwiftPanelBackground()
+        background = SwiftPanelBackground(frame: withParentView.frame)
         content    = SwiftPanelContent(frame: withParentView.frame)
+
         parentView.addSubview(background)
-        background.addSubview(content)
+        parentView.addSubview(content)
 
     }
 
 
     func show() {
-        background.show()
-        content.show()
+        background.show(closureSuccess: {
+            self.content.show(closureSuccess: {})
+        })
     }
 
     func hide() {
-        content.hide()
-        background.hide()
+        content.hide(closureSuccess: {
+            self.background.hide(closureSuccess: {})
+        })
+
     }
 
 }

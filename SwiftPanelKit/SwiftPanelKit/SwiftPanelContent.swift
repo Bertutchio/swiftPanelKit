@@ -24,6 +24,7 @@ class SwiftPanelContent: UIView {
 
         super.init(frame: rect)
         backgroundColor = .red
+        alpha = 1
 
     }
 
@@ -32,30 +33,28 @@ class SwiftPanelContent: UIView {
     }
 
 
-    func show() {
+    func show(closureSuccess: @escaping () -> Void) {
 
-        self.bringSubviewToFront(self)
-
-        UIView.animate(withDuration: animationDuration, animations: {
-
-            self.transform = CGAffineTransform(translationX: 200, y: 0)
-
-        }) { (success) in
-
+        UIView.animate(
+            withDuration: animationDuration,
+            animations: { self.transform = CGAffineTransform(translationX: 200, y: 0) },
+            completion: { (sucess) in
+                closureSuccess()
         }
+        )
 
     }
 
 
-    func hide() {
+    func hide(closureSuccess: @escaping () -> Void) {
 
-        UIView.animate(withDuration: animationDuration, animations: {
-
-            self.transform = CGAffineTransform.identity
-
-        }) { (success) in
-
-        }
+        UIView.animate(
+            withDuration: animationDuration,
+            animations: { self.transform = CGAffineTransform.identity },
+            completion: { (sucess) in
+                closureSuccess()
+            }
+        )
 
     }
 
