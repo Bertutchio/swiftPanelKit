@@ -10,12 +10,22 @@ import UIKit
 
 class SwiftPanelBackground: UIView {
 
+    var aspect: MaskAspect = MaskAspect()
+    var animation: AnimationAspect = AnimationAspect()
 
-    var animationDuration: TimeInterval = 0.35
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .black
+        initAspect()
+    }
+
+    init(frame: CGRect, withAspect: MaskAspect, andAnimation: AnimationAspect) {
+        super.init(frame: frame)
+        aspect = withAspect
+        initAspect()
+    }
+
+    func initAspect() {
+        backgroundColor = aspect.color
         alpha = 0
     }
 
@@ -27,7 +37,7 @@ class SwiftPanelBackground: UIView {
     func hide(closureSuccess: @escaping () -> Void) {
 
         UIView.animate(
-            withDuration: animationDuration,
+            withDuration: animation.duration,
             animations: { self.alpha = 0 },
             completion: { (sucess) in
                 closureSuccess()
@@ -38,9 +48,11 @@ class SwiftPanelBackground: UIView {
 
     func show(closureSuccess: @escaping () -> Void) {
 
+
+
         UIView.animate(
-            withDuration: animationDuration,
-            animations: { self.alpha = 0.75 },
+            withDuration: animation.duration,
+            animations: { self.alpha = self.aspect.alpha },
             completion: { (sucess) in
                 closureSuccess()
             }

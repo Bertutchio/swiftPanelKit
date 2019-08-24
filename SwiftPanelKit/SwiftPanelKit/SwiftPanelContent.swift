@@ -10,22 +10,20 @@ import UIKit
 
 class SwiftPanelContent: UIView {
 
-
-    var animationDuration: TimeInterval = 0.5
+    var aspect: ContentAspect = ContentAspect()
+    var animation: AnimationAspect = AnimationAspect()
 
     override init(frame: CGRect) {
 
-        let rect = CGRect(
-            x: -200,
-            y: 0,
-            width: 200,
-            height: frame.height
-        )
+        super.init(frame: frame)
 
-        super.init(frame: rect)
-        backgroundColor = .red
-        alpha = 1
+        let rect = self.calcContentFrame(fromFrameReference: frame)
 
+        self.frame = rect
+
+        backgroundColor = aspect.color
+        alpha = aspect.alpha
+        layer.cornerRadius = aspect.cornerRadius
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,11 +31,21 @@ class SwiftPanelContent: UIView {
     }
 
 
+    func calcContentFrame(fromFrameReference: CGRect) -> CGRect {
+
+        return CGRect(
+            x: 0 - aspect.width - aspect.cornerRadius,
+            y: 0 + aspect.paddingTop,
+            width: aspect.width + aspect.cornerRadius,
+            height: fromFrameReference.height - aspect.paddingTop - aspect.paddingBottom
+        )
+    }
+
     func show(closureSuccess: @escaping () -> Void) {
 
         UIView.animate(
-            withDuration: animationDuration,
-            animations: { self.transform = CGAffineTransform(translationX: 200, y: 0) },
+            withDuration: animation.duration,
+            animations: { self.transform = CGAffineTransform(translationX: self.aspect.width, y: 0) },
             completion: { (sucess) in
                 closureSuccess()
         }
@@ -49,7 +57,7 @@ class SwiftPanelContent: UIView {
     func hide(closureSuccess: @escaping () -> Void) {
 
         UIView.animate(
-            withDuration: animationDuration,
+            withDuration: animation.duration,
             animations: { self.transform = CGAffineTransform.identity },
             completion: { (sucess) in
                 closureSuccess()

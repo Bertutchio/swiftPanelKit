@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		249A8A4C23117CEF00E8D0C0 /* SwiftPanelStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A8A4B23117CEF00E8D0C0 /* SwiftPanelStructures.swift */; };
 		24B091B823032688002CE89A /* SwiftPanelContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B423032688002CE89A /* SwiftPanelContent.swift */; };
 		24B091B923032688002CE89A /* SwiftPanelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B523032688002CE89A /* SwiftPanelExtension.swift */; };
 		24B091BA23032688002CE89A /* SwiftPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091B623032688002CE89A /* SwiftPanel.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		249A8A4B23117CEF00E8D0C0 /* SwiftPanelStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPanelStructures.swift; sourceTree = "<group>"; };
 		24B091B423032688002CE89A /* SwiftPanelContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanelContent.swift; sourceTree = "<group>"; };
 		24B091B523032688002CE89A /* SwiftPanelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanelExtension.swift; sourceTree = "<group>"; };
 		24B091B623032688002CE89A /* SwiftPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPanel.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 		24B091B323032602002CE89A /* SwiftPanelKit */ = {
 			isa = PBXGroup;
 			children = (
+				249A8A4B23117CEF00E8D0C0 /* SwiftPanelStructures.swift */,
 				24B091B623032688002CE89A /* SwiftPanel.swift */,
 				24B091B723032688002CE89A /* SwiftPanelBackground.swift */,
 				24B091B423032688002CE89A /* SwiftPanelContent.swift */,
@@ -157,6 +160,7 @@
 			files = (
 				24B091BB23032688002CE89A /* SwiftPanelBackground.swift in Sources */,
 				24B091B823032688002CE89A /* SwiftPanelContent.swift in Sources */,
+				249A8A4C23117CEF00E8D0C0 /* SwiftPanelStructures.swift in Sources */,
 				24C50EFC2303233400C46FE7 /* ViewController.swift in Sources */,
 				24B091BA23032688002CE89A /* SwiftPanel.swift in Sources */,
 				24B091B923032688002CE89A /* SwiftPanelExtension.swift in Sources */,
