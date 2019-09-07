@@ -10,59 +10,82 @@ import UIKit
 
 class SwiftPanelContent: UIView {
 
-    var aspect: ContentAspect = ContentAspect()
-    var animation: AnimationAspect = AnimationAspect()
+    var aspect: ContentAspect!
+
+    var initialFrame: CGRect {
+        get {
+            var x: CGFloat = 0
+            var y: CGFloat = 0
+
+            switch aspect.animation.direction {
+            case .botomToTop:
+                y = aspect.height
+            case .leftToRight:
+                x = 0 - aspect.width
+            case .rightToLeft:
+                x = aspect.width
+            case .topToBotom:
+                y = 0 - aspect.height
+            }
+
+            return CGRect(
+                x: x,
+                y: y,
+                width: aspect.width,
+                height: aspect.height
+            )
+        }
+    }
+
+    var translationPoint: [CGFloat] {
+        get {
+            var x: CGFloat = 0
+            var y: CGFloat = 0
+
+            switch aspect.animation.direction {
+            case .botomToTop:
+                y = 0 - aspect.height
+            case .leftToRight:
+                x = aspect.width
+            case .rightToLeft:
+                x = 0 - aspect.width
+            case .topToBotom:
+                y = aspect.height
+            }
+
+            return [x,y]
+        }
+    }
 
     override init(frame: CGRect) {
-
         super.init(frame: frame)
+        aspect = ContentAspect(bounds: frame)
+        initAspect()
+    }
 
-        let rect = self.calcContentFrame(fromFrameReference: frame)
-
-        self.frame = rect
-
+    func initAspect() {
+        frame = initialFrame
         backgroundColor = aspect.color
         alpha = aspect.alpha
         layer.cornerRadius = aspect.cornerRadius
     }
 
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-
-    func calcContentFrame(fromFrameReference: CGRect) -> CGRect {
-
-        return CGRect(
-            x: 0 - aspect.width - aspect.cornerRadius,
-            y: 0 + aspect.paddingTop,
-            width: aspect.width + aspect.cornerRadius,
-            height: fromFrameReference.height - aspect.paddingTop - aspect.paddingBottom
-        )
+    func show() {
+        self.transform = CGAffineTransform(translationX: translationPoint[0], y: translationPoint[1])
     }
 
-    func show(closureSuccess: @escaping () -> Void) {
-
-        UIView.animate(
-            withDuration: animation.duration,
-            animations: { self.transform = CGAffineTransform(translationX: self.aspect.width, y: 0) },
-            completion: { (sucess) in
-                closureSuccess()
-        }
-        )
-
+    func hide() {
+        self.transform = CGAffineTransform.identity
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-    func hide(closureSuccess: @escaping () -> Void) {
-
-        UIView.animate(
-            withDuration: animation.duration,
-            animations: { self.transform = CGAffineTransform.identity },
-            completion: { (sucess) in
-                closureSuccess()
-            }
-        )
+        print("touching content")
 
     }
 

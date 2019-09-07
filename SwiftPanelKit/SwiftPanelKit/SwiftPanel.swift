@@ -10,34 +10,59 @@ import UIKit
 
 class SwiftPanel {
 
-    var background: SwiftPanelBackground!
-    var content: SwiftPanelContent!
-    var parentView: UIView!
+    var bounds: CGRect
+    var panelMask: SwiftPanelMask!
+    var panelContent: SwiftPanelContent!
 
+    init(view: UIView) {
 
-    init(withParentView: UIView) {
-        
-        parentView = withParentView
-        background = SwiftPanelBackground(frame: withParentView.frame)
-        content    = SwiftPanelContent(frame: withParentView.frame)
+        bounds = view.bounds
+        panelMask    = SwiftPanelMask(frame: bounds)
+        panelContent = SwiftPanelContent(frame: bounds)
 
-        parentView.addSubview(background)
-        parentView.addSubview(content)
+        panelMask.parent = self
 
+        view.addSubview(panelMask)
+        view.addSubview(panelContent)
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func show() {
-        background.show(closureSuccess: {
-            self.content.show(closureSuccess: {})
-        })
+
+        UIView.animate(
+            withDuration: 0.35,
+            animations: { self.panelMask.show() },
+            completion: { (sucess) in
+
+                UIView.animate(
+                    withDuration: 0.35,
+                    animations: { self.panelContent.show() },
+                    completion: { (sucess) in
+
+                    }
+                )
+            }
+        )
     }
 
     func hide() {
-        content.hide(closureSuccess: {
-            self.background.hide(closureSuccess: {})
-        })
+        UIView.animate(
+            withDuration: 0.35,
+            animations: { self.panelContent.hide() },
+            completion: { (sucess) in
 
+                UIView.animate(
+                    withDuration: 0.35,
+                    animations: { self.panelMask.hide() },
+                    completion: { (sucess) in
+
+                    }
+                )
+            }
+        )
     }
 
 }

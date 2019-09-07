@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     @IBAction func showPanelAction(_ sender: Any) {
 
         if panel === nil {
-            panel = SwiftPanel(withParentView: view)
+            print("init")
+            panel = SwiftPanel(view: view)
+//            view.addSubview(panel ?? UIView())
         }
 
         panel?.show()
@@ -27,6 +29,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        print("touching parent")
+
+    }
 
 }
 

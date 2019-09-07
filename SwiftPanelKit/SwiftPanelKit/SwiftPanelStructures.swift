@@ -10,30 +10,51 @@ import UIKit
 
 struct MaskAspect {
 
-    var color: UIColor = .black
-    var alpha: CGFloat = 0.75
+    var color: UIColor
+    var alpha: CGFloat
 
-    var blurIntensity: CGFloat = 0
+    init() {
+        color = .black
+        alpha = 0.75
+    }
 
 }
 
 
 struct ContentAspect {
 
-    var color: UIColor = .white
-    var alpha: CGFloat = 1
+    var bounds: CGRect
+    var width: CGFloat
+    var height: CGFloat
+    var margin: Margin
+    var color: UIColor
+    var alpha: CGFloat
+    var cornerRadius: CGFloat
+    var animation: AnimationAspect
 
-    var paddingTop: CGFloat = 70
-    var paddingBottom: CGFloat = 50
-
-    var width: CGFloat = 300
-
-    var cornerRadius: CGFloat = 20
+    init(bounds: CGRect) {
+        self.bounds = bounds
+        width = bounds.width
+        height = bounds.height
+        color = .white
+        alpha = 1
+        margin = Margin()
+        cornerRadius = 20
+        animation = AnimationAspect()
+    }
 }
 
+struct Margin {
 
-struct AnimationAspect {
+    var top: CGFloat
+    var right: CGFloat
+    var bottom: CGFloat
+    var left: CGFloat
 
-    var duration: TimeInterval = 0.35
-
+    init() {
+        top = 0
+        right = 0
+        bottom = 0
+        left = 0
+    }
 }
