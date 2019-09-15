@@ -15,7 +15,7 @@ struct AnimationAspect {
 
     init() {
         duration = 0.35
-        direction = .topToBotom
+        direction = .botomToTop
     }
 
 }

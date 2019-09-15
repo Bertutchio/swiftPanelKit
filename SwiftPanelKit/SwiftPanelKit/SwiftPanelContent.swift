@@ -44,13 +44,13 @@ class SwiftPanelContent: UIView {
 
             switch aspect.animation.direction {
             case .botomToTop:
-                y = 0 - aspect.height
+                y = 0 - aspect.height + aspect.marginOppositeSide
             case .leftToRight:
-                x = aspect.width
+                x = aspect.width - aspect.marginOppositeSide
             case .rightToLeft:
-                x = 0 - aspect.width
+                x = 0 - aspect.width + aspect.marginOppositeSide
             case .topToBotom:
-                y = aspect.height
+                y = aspect.height - aspect.marginOppositeSide
             }
 
             return [x,y]
