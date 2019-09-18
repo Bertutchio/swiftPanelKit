@@ -27,6 +27,7 @@ struct ContentAspect {
     var width: CGFloat
     var height: CGFloat
     var marginOppositeSide: CGFloat
+    var marginSides: CGFloat
     var color: UIColor
     var alpha: CGFloat
     var cornerRadius: CGFloat
@@ -39,6 +40,7 @@ struct ContentAspect {
         color = .white
         alpha = 1
         marginOppositeSide = 60
+        marginSides = 5
         cornerRadius = 20
         animation = AnimationAspect()
     }

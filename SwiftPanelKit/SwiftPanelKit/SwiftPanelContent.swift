@@ -16,23 +16,38 @@ class SwiftPanelContent: UIView {
         get {
             var x: CGFloat = 0
             var y: CGFloat = 0
+            var width: CGFloat = 0
+            var height: CGFloat = 0
 
             switch aspect.animation.direction {
             case .botomToTop:
                 y = aspect.height
+                x = aspect.marginSides
             case .leftToRight:
                 x = 0 - aspect.width
+                y = aspect.marginSides
             case .rightToLeft:
                 x = aspect.width
+                y = aspect.marginSides
             case .topToBotom:
                 y = 0 - aspect.height
+                x = aspect.marginSides
+            }
+
+            switch aspect.animation.direction {
+            case .leftToRight, .rightToLeft:
+                height = aspect.height - (aspect.marginSides * 2)
+                width = aspect.width
+            case .topToBotom, .botomToTop:
+                width = aspect.width - (aspect.marginSides * 2)
+                height = aspect.height
             }
 
             return CGRect(
                 x: x,
                 y: y,
-                width: aspect.width,
-                height: aspect.height
+                width: width,
+                height: height
             )
         }
     }
