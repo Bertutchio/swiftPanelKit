@@ -12,7 +12,7 @@ class SwiftPanelContent: UIView {
 
     var aspect: ContentAspect!
 
-    var initialFrame: CGRect {
+    var initialPlacement: CGRect {
         get {
             var x: CGFloat = 0
             var y: CGFloat = 0
@@ -21,26 +21,26 @@ class SwiftPanelContent: UIView {
 
             switch aspect.animation.direction {
             case .botomToTop:
-                y = aspect.height
+                y = frame.height
                 x = aspect.marginSides
             case .leftToRight:
-                x = 0 - aspect.width
+                x = 0 - frame.width
                 y = aspect.marginSides
             case .rightToLeft:
-                x = aspect.width
+                x = frame.width
                 y = aspect.marginSides
             case .topToBotom:
-                y = 0 - aspect.height
+                y = 0 - frame.height
                 x = aspect.marginSides
             }
 
             switch aspect.animation.direction {
             case .leftToRight, .rightToLeft:
-                height = aspect.height - (aspect.marginSides * 2)
-                width = aspect.width
+                height = frame.height - (aspect.marginSides * 2)
+                width = frame.width
             case .topToBotom, .botomToTop:
-                width = aspect.width - (aspect.marginSides * 2)
-                height = aspect.height
+                width = frame.width - (aspect.marginSides * 2)
+                height = frame.height
             }
 
             return CGRect(
@@ -52,46 +52,44 @@ class SwiftPanelContent: UIView {
         }
     }
 
-    var translationPoint: [CGFloat] {
+    var translationPoint: CGPoint {
         get {
             var x: CGFloat = 0
             var y: CGFloat = 0
 
             switch aspect.animation.direction {
             case .botomToTop:
-                y = 0 - aspect.height + aspect.marginOppositeSide
+                y = 0 - frame.height + aspect.marginOppositeSide
             case .leftToRight:
-                x = aspect.width - aspect.marginOppositeSide
+                x = frame.width - aspect.marginOppositeSide
             case .rightToLeft:
-                x = 0 - aspect.width + aspect.marginOppositeSide
+                x = 0 - frame.width + aspect.marginOppositeSide
             case .topToBotom:
-                y = aspect.height - aspect.marginOppositeSide
+                y = frame.height - aspect.marginOppositeSide
             }
 
-            return [x,y]
+            return CGPoint.init(x: x, y: y)
         }
     }
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, config: Content) {
         super.init(frame: frame)
-        aspect = ContentAspect(bounds: frame)
-        initAspect()
-    }
-
-    func initAspect() {
-        frame = initialFrame
+        aspect = config.aspect
+        self.frame = initialPlacement
         backgroundColor = aspect.color
         alpha = aspect.alpha
         layer.cornerRadius = aspect.cornerRadius
     }
-
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func show() {
-        self.transform = CGAffineTransform(translationX: translationPoint[0], y: translationPoint[1])
+        self.transform = CGAffineTransform(
+            translationX: translationPoint.x,
+            y: translationPoint.y
+        )
     }
 
     func hide() {
@@ -99,8 +97,6 @@ class SwiftPanelContent: UIView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        print("touching content")
 
     }
 

@@ -10,20 +10,19 @@ import UIKit
 
 class SwiftPanel {
 
-    var bounds: CGRect
     var panelMask: SwiftPanelMask!
     var panelContent: SwiftPanelContent!
 
-    init(view: UIView) {
 
-        bounds = view.bounds
-        panelMask    = SwiftPanelMask(frame: bounds)
-        panelContent = SwiftPanelContent(frame: bounds)
+    init(toView: UIView, config: Panel) {
+
+        panelMask    = SwiftPanelMask(frame: toView.bounds, config: config.mask)
+        panelContent = SwiftPanelContent(frame: toView.bounds, config: config.content)
 
         panelMask.parent = self
 
-        view.addSubview(panelMask)
-        view.addSubview(panelContent)
+        toView.addSubview(panelMask)
+        toView.addSubview(panelContent)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,12 +32,12 @@ class SwiftPanel {
     func show() {
 
         UIView.animate(
-            withDuration: 0.35,
+            withDuration: panelMask.aspect.animation.duration,
             animations: { self.panelMask.show() },
             completion: { (sucess) in
 
                 UIView.animate(
-                    withDuration: 0.35,
+                    withDuration: self.panelContent.aspect.animation.duration,
                     animations: { self.panelContent.show() },
                     completion: { (sucess) in
 
@@ -50,12 +49,12 @@ class SwiftPanel {
 
     func hide() {
         UIView.animate(
-            withDuration: 0.35,
+            withDuration: panelContent.aspect.animation.duration,
             animations: { self.panelContent.hide() },
             completion: { (sucess) in
 
                 UIView.animate(
-                    withDuration: 0.35,
+                    withDuration: self.panelMask.aspect.animation.duration,
                     animations: { self.panelMask.hide() },
                     completion: { (sucess) in
 

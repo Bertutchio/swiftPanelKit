@@ -11,22 +11,14 @@ import UIKit
 class SwiftPanelMask: UIView {
 
     var parent: SwiftPanel!
-    var behaviour: MaskBehaviour = MaskBehaviour()
+    var behaviour: MaskBehaviour!
     var aspect: MaskAspect!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        aspect = MaskAspect()
-        initAspect()
-    }
 
-    init(frame: CGRect, withAspect: MaskAspect) {
+    init(frame: CGRect, config: Mask) {
         super.init(frame: frame)
-        aspect = withAspect
-        initAspect()
-    }
-
-    func initAspect() {
+        aspect = config.aspect
+        behaviour = config.behaviour
         backgroundColor = aspect.color
         alpha = aspect.alpha
     }
@@ -41,12 +33,13 @@ class SwiftPanelMask: UIView {
     }
 
     func show() {
-       self.alpha = self.aspect.alpha
+        self.alpha = self.aspect.alpha
     }
 
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
+        // TODO: avoid teh use of parent
         if behaviour.closeOnTouche {
             parent.hide()
         }

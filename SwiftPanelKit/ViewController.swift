@@ -16,9 +16,10 @@ class ViewController: UIViewController {
     @IBAction func showPanelAction(_ sender: Any) {
 
         if panel === nil {
-            print("init")
-            panel = SwiftPanel(view: view)
-//            view.addSubview(panel ?? UIView())
+            var panelConf = Panel()
+            panelConf.content.aspect.color = .red
+            panelConf.content.aspect.animation.duration = 0.25
+            panel = SwiftPanel(toView: view, config: panelConf)
         }
 
         panel?.show()
